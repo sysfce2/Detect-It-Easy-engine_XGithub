@@ -99,11 +99,7 @@ QByteArray buildBasicAuthHeader(const QString &sUser, const QString &sToken)
         return {};
     }
 
-    return QByteArrayLiteral("Basic ")
-           + QStringLiteral("%1:%2")
-                 .arg(sUser, sToken)
-                 .toLocal8Bit()
-                 .toBase64();
+    return QByteArrayLiteral("Basic ") + QStringLiteral("%1:%2").arg(sUser, sToken).toLocal8Bit().toBase64();
 }
 
 bool requestCurl(const QString &sCurlProgram, const QString &sUrl, const QString &sAcceptHeader, QByteArray *pStdOut, QString *pError,
@@ -133,7 +129,7 @@ bool requestCurl(const QString &sCurlProgram, const QString &sUrl, const QString
 }
 
 bool requestNetwork(const QString &sUrl, const QString &sAcceptHeader, QByteArray *pData, QString *pError, const QString &sAuthUser = QString(),
-                   const QString &sAuthToken = QString(), QString *pRedirectUrl = nullptr)
+                    const QString &sAuthToken = QString(), QString *pRedirectUrl = nullptr)
 {
     QNetworkAccessManager nam;
     nam.setProxy(QNetworkProxy::NoProxy);
